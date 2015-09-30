@@ -3,7 +3,7 @@ package logging
 // a "thin interface"
 trait Logger {  
   def log(message: String) {}
-  
+
   def infoTag    = "[info]"
   def warningTag = "[warning]"
   def errorTag   = "[error]"
@@ -27,6 +27,14 @@ trait ColoredConsoleLogger extends ConsoleLogger {
   override def infoTag = Console.GREEN + super.infoTag + Console.RESET
   override def warningTag = Console.YELLOW + super.warningTag + Console.RESET
   override def errorTag = Console.RED + super.errorTag + Console.RESET
+}
+
+// mixin implementation: prepend a timestamp
+trait TimestampLogger extends Logger {
+  abstract override def log(message: String) {
+    val date = new java.util.Date()
+    super.log(s"[$date] $message")
+  }
 }
 
 // concrete implementation: to Twitter
