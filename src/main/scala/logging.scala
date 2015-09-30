@@ -1,6 +1,6 @@
 package logging
 
-class Logger {  
+trait Logger {  
   def log(message: String) {
     println(message)
   }
