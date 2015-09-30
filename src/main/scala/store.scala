@@ -1,21 +1,17 @@
 package acme
 
-class Store(var widgetsInStock: Int) {
+class Store(initialStock: Int) {
+  private var inStock = 0
+  widgetsInStock = initialStock
+
+  // properties (getters and setters)
+  def widgetsInStock = inStock
+  def widgetsInStock_=(newValue: Int) = {
+    require(newValue >= 0, "Out of stock!")
+    inStock = newValue
+  }
+
   def order(numWidgets: Int) =  {
     widgetsInStock -= numWidgets
   }
-}
-
-object Program extends App {
-  final val CAPACITY = 100
-  val store = new Store(CAPACITY)
-
-  store.order(CAPACITY / 2)
-  println(store.widgetsInStock)
-
-  store.order(CAPACITY / 2)  // the store is now empty
-  println(store.widgetsInStock)
-
-  store.order(CAPACITY / 2)  // uh-oh!
-  println(store.widgetsInStock)
 }
