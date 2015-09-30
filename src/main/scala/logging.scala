@@ -2,8 +2,8 @@ package logging
 
 // a "thin interface"
 trait Logger {  
-  def log(message: String)    // this method is abstract
-
+  def log(message: String) {}
+  
   def infoTag    = "[info]"
   def warningTag = "[warning]"
   def errorTag   = "[error]"
@@ -16,8 +16,9 @@ trait Logger {
 
 // concrete implementation: to console
 trait ConsoleLogger extends Logger {
-  override def log(message: String) {
+  abstract override def log(message: String) {
     println(message)
+    super.log(message)
   }
 }
 
@@ -34,7 +35,8 @@ trait TwitterLogger extends Logger {
 
   val twitter = new TwitterFactory().getInstance()
 
-  override def log(message: String) {
+  abstract override def log(message: String) {
     twitter.updateStatus(message)
+    super.log(message)
   }
 }
