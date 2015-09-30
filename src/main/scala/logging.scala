@@ -27,3 +27,14 @@ trait ColoredConsoleLogger extends ConsoleLogger {
   override def warningTag = Console.YELLOW + super.warningTag + Console.RESET
   override def errorTag = Console.RED + super.errorTag + Console.RESET
 }
+
+// concrete implementation: to Twitter
+trait TwitterLogger extends Logger {
+  import twitter4j._
+
+  val twitter = new TwitterFactory().getInstance()
+
+  override def log(message: String) {
+    twitter.updateStatus(message)
+  }
+}
