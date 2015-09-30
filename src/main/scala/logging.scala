@@ -20,3 +20,10 @@ trait ConsoleLogger extends Logger {
     println(message)
   }
 }
+
+// extending an existing trait
+trait ColoredConsoleLogger extends ConsoleLogger {
+  override def infoTag = Console.GREEN + super.infoTag + Console.RESET
+  override def warningTag = Console.YELLOW + super.warningTag + Console.RESET
+  override def errorTag = Console.RED + super.errorTag + Console.RESET
+}

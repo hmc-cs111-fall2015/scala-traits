@@ -2,7 +2,7 @@ package acme
 
 import logging._
 
-class Store(initialStock: Int) extends ConsoleLogger {
+class Store(initialStock: Int) extends ColoredConsoleLogger {
   private var inStock = 0
   widgetsInStock = initialStock
 
