@@ -1,8 +1,8 @@
 package acme
 
-import logging.Logger
+import logging._
 
-class Store(initialStock: Int) extends Logger {
+class Store(initialStock: Int) extends ConsoleLogger {
   private var inStock = 0
   widgetsInStock = initialStock
 
